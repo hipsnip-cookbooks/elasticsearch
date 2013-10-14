@@ -1,0 +1,116 @@
+######################### ElasticSearch Configuration  ########################
+
+# This file is managed by Chef, do not edit manually, your changes *will* be overwritten!
+#
+# Please see the source file for context and more information:
+#
+# https://github.com/elasticsearch/elasticsearch/blob/master/config/elasticsearch.yml
+#
+# To set configurations not exposed by this template, set the
+# `node.elasticsearch['custom_config']` attribute in your node configuration,
+# `elasticsearch/settings` data bag, role/environment definition, etc:
+#
+#     // ...
+#     'threadpool.index.type' => 'fixed',
+#     'threadpool.index.size' => '2'
+#     // ...
+
+################################### Cluster ###################################
+
+<%= print_value 'cluster.name' -%>
+
+#################################### Node #####################################
+
+node.name: <%= @node_name %>
+<%= print_value 'node.master' -%>
+<%= print_value 'node.data' -%>
+<%= print_value 'node.max_local_storage_nodes' -%>
+
+#################################### Paths ####################################
+
+path.conf: <%= @config_dir %>
+path.data: <%= @data_dir %>
+<%= print_value 'path.work' -%>
+path.logs: <%= @log_dir %>
+<%= print_value 'path.plugins' -%>
+
+#################################### Index ####################################
+
+<%= print_value 'index.number_of_shards' -%>
+<%= print_value 'index.number_of_replicas' -%>
+<%= print_value 'index.auto_expand_replicas' -%>
+<%= print_value 'index.mapper.dynamic' -%>
+<%= print_value 'action.auto_create_index' -%>
+<%= print_value 'action.disable_delete_all_indices' -%>
+
+################################### Memory ####################################
+
+<%= print_value 'bootstrap.mlockall' -%>
+
+############################## Network And HTTP ###############################
+
+<%= print_value 'network.bind_host' -%>
+<%= print_value 'network.publish_host' -%>
+<%= print_value 'network.host' -%>
+<%= print_value 'transport.tcp.port' -%>
+<%= print_value 'transport.tcp.compress' -%>
+<%= print_value 'http.host' -%>
+http.port: <%= @port %>
+<%= print_value 'http.max_content_length' -%>
+<%= print_value 'http.enabled' -%>
+
+################################### Gateway ###################################
+
+<%= print_value 'gateway.type', node.elasticsearch['gateway']['type'] -%>
+<%= print_value 'gateway.recover_after_nodes' -%>
+<%= print_value 'gateway.recover_after_time' -%>
+<%= print_value 'gateway.expected_nodes' -%>
+
+############################# Recovery Throttling #############################
+
+<%= print_value 'cluster.routing.allocation.node_initial_primaries_recoveries' -%>
+<%= print_value 'cluster.routing.allocation.node_concurrent_recoveries' -%>
+<%= print_value 'indices.recovery.max_size_per_sec' -%>
+<%= print_value 'indices.recovery.concurrent_streams' -%>
+
+################################## Discovery ##################################
+
+<%= print_value 'discovery.type', node.elasticsearch['discovery']['type'] -%>
+
+<%= print_value 'discovery.zen.minimum_master_nodes' -%>
+<%= print_value 'discovery.zen.ping.timeout' -%>
+<%= print_value 'discovery.zen.ping.multicast.enabled' -%>
+<%= print_value 'discovery.zen.ping.unicast.hosts' -%>
+
+################################## Slow Log ###################################
+
+<%= print_value 'index.search.slowlog.threshold.query.warn' -%>
+<%= print_value 'index.search.slowlog.threshold.query.info' -%>
+<%= print_value 'index.search.slowlog.threshold.query.debug' -%>
+<%= print_value 'index.search.slowlog.threshold.query.trace' -%>
+<%=                                                          -%>
+<%= print_value 'index.search.slowlog.threshold.fetch.warn' -%>
+<%= print_value 'index.search.slowlog.threshold.fetch.info' -%>
+<%= print_value 'index.search.slowlog.threshold.fetch.debug' -%>
+<%= print_value 'index.search.slowlog.threshold.fetch.trace' -%>
+<%=                                                          -%>
+<%= print_value 'index.indexing.slowlog.threshold.index.warn' -%>
+<%= print_value 'index.indexing.slowlog.threshold.index.info' -%>
+<%= print_value 'index.indexing.slowlog.threshold.index.debug' -%>
+<%= print_value 'index.indexing.slowlog.threshold.index.trace' -%>
+
+################################## GC Logging #################################
+
+<%= print_value 'monitor.jvm.gc.ParNew.warn' -%>
+<%= print_value 'monitor.jvm.gc.ParNew.info' -%>
+<%= print_value 'monitor.jvm.gc.ParNew.debug' -%>
+<%=                                           -%>
+<%= print_value 'monitor.jvm.gc.ConcurrentMarkSweep.warn' -%>
+<%= print_value 'monitor.jvm.gc.ConcurrentMarkSweep.info' -%>
+<%= print_value 'monitor.jvm.gc.ConcurrentMarkSweep.debug' -%>
+
+################################## Custom #####################################
+
+<% node.elasticsearch['custom_config'].sort.each do |key, value| %>
+<%= key %>: <%= value %>
+<% end %>
