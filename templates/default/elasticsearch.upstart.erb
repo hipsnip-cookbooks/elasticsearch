@@ -17,7 +17,7 @@ limit memlock <%= node['elasticsearch']['limits']['memlock'] %> <%= node['elasti
 
 # Start the process
 script
-  export JAVA_HOME='<%= "#{node['java']['java_home']}" %>'
+  export JAVA_HOME='<%= node['java']['java_home'] %>'
   export ES_HOME='<%= "#{node['elasticsearch']['path']['install']}/elasticsearch" %>'
   export ES_CLASSPATH=$ES_CLASSPATH:$ES_HOME/lib/*:$ES_HOME/lib/sigar/*
   export ES_HEAP_SIZE=<%= node['elasticsearch']['allocated_memory'] %>
