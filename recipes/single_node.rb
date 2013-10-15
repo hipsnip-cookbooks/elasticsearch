@@ -19,6 +19,4 @@
 
 include_recipe "hipsnip-elasticsearch::default"
 
-hipsnip_elasticsearch_instance "default" do
-  port 9200
-end
+hipsnip_elasticsearch_instance "default"
