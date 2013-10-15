@@ -116,5 +116,10 @@ action :create do
     action [:enable, :start]
   end
 
+  hipsnip_elasticsearch_check_node "127.0.0.1" do
+    port new_resource.port
+    expected_status node['elasticsearch']['node_check']['expected_status']
+  end
+
   new_resource.updated_by_last_action(true)
 end
