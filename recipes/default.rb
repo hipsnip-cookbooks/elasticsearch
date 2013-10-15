@@ -17,6 +17,7 @@
 # limitations under the License.
 #
 
+package 'curl'
 include_recipe "java" # @TODO - make this optional in the future
 include_recipe "ark::default"
 
