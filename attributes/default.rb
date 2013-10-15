@@ -84,3 +84,12 @@ default['elasticsearch']['logging']['syslog'] = false
 default['elasticsearch']['logging']['level'] = 'INFO'
 default['elasticsearch']['logging']['params']['action'] = 'DEBUG'
 default['elasticsearch']['logging']['params']['com.amazonaws'] = 'WARN'
+
+
+################################################################################
+# Settings for node health check provider
+
+default['elasticsearch']['node_check']['expected_status'] = 'yellow'
+default['elasticsearch']['node_check']['retries'] = 3
+default['elasticsearch']['node_check']['timeout'] = 10 # seconds
+# @note - timeout is exponential - the actual timeout is retry*timeout
