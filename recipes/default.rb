@@ -22,6 +22,17 @@ include_recipe "ark::default"
 
 Erubis::Context.send(:include, Extensions::Templates)
 
+# Set default logging attributes
+if node['elasticsearch']['logging']['syslog']
+  node.default['elasticsearch']['logging']['root_logger'] = "#{node['elasticsearch']['logging']['level']}, console, syslog"
+  node.default['elasticsearch']['logging']['params']['index.search.slowlog'] = 'TRACE, syslog'
+  node.default['elasticsearch']['logging']['params']['index.indexing.slowlog'] = 'TRACE, syslog'
+else
+  node.default['elasticsearch']['logging']['root_logger'] = "#{node['elasticsearch']['logging']['level']}, console, file"
+  node.default['elasticsearch']['logging']['params']['index.search.slowlog'] = 'TRACE, index_search_slow_log_file'
+  node.default['elasticsearch']['logging']['params']['index.indexing.slowlog'] = 'TRACE, index_indexing_slow_log_file'
+end
+
 
 ################################################################################
 # Set up Elasticsearch user, group and folders

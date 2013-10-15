@@ -80,7 +80,7 @@ default['elasticsearch']['limits']['nofile']  = 64000
 default['elasticsearch']['custom_config'] = {}
 
 # Logging
-default['elasticsearch']['logging']['action'] = 'DEBUG'
-default['elasticsearch']['logging']['com.amazonaws'] = 'WARN'
-default['elasticsearch']['logging']['index.search.slowlog'] = 'TRACE, index_search_slow_log_file'
-default['elasticsearch']['logging']['index.indexing.slowlog'] = 'TRACE, index_indexing_slow_log_file'
+default['elasticsearch']['logging']['syslog'] = false
+default['elasticsearch']['logging']['level'] = 'INFO'
+default['elasticsearch']['logging']['params']['action'] = 'DEBUG'
+default['elasticsearch']['logging']['params']['com.amazonaws'] = 'WARN'

@@ -1,6 +1,6 @@
-rootLogger: INFO, console, file
+rootLogger: <%= node['elasticsearch']['logging']['root_logger'] %>
 
-<% node.elasticsearch['logging'].sort.each do |key, value| %>
+<% node['elasticsearch']['logging']['params'].sort.each do |key, value| %>
 logger.<%= key %>: <%= value %>
 <% end %>
 
@@ -15,6 +15,15 @@ appender:
       type: consolePattern
       conversionPattern: "[%d{ISO8601}][%-5p][%-25c] %m%n"
 
+<% if node['elasticsearch']['logging']['syslog'] %>
+  syslog:
+    type: syslog
+    syslogHost: localhost:514
+    facility: local3
+    layout:
+      type: pattern
+      conversionPattern: "[%d{ISO8601}][%-5p][%-25c] %m%n"
+<% else %>
   file:
     type: dailyRollingFile
     file: ${path.logs}/${cluster.name}.log
@@ -38,3 +47,4 @@ appender:
     layout:
       type: pattern
       conversionPattern: "[%d{ISO8601}][%-5p][%-25c] %m%n"
+<% end %>
