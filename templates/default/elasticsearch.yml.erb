@@ -61,7 +61,7 @@ http.port: <%= @port %>
 
 ################################### Gateway ###################################
 
-<%= print_value 'gateway.type', node.elasticsearch['gateway']['type'] -%>
+<%= print_value 'gateway.type', node['elasticsearch']['gateway']['type'] -%>
 <%= print_value 'gateway.recover_after_nodes' -%>
 <%= print_value 'gateway.recover_after_time' -%>
 <%= print_value 'gateway.expected_nodes' -%>
@@ -75,7 +75,7 @@ http.port: <%= @port %>
 
 ################################## Discovery ##################################
 
-<%= print_value 'discovery.type', node.elasticsearch['discovery']['type'] -%>
+<%= print_value 'discovery.type', node['elasticsearch']['discovery']['type'] -%>
 
 <%= print_value 'discovery.zen.minimum_master_nodes' -%>
 <%= print_value 'discovery.zen.ping.timeout' -%>
@@ -111,6 +111,6 @@ http.port: <%= @port %>
 
 ################################## Custom #####################################
 
-<% node.elasticsearch['custom_config'].sort.each do |key, value| %>
+<% node['elasticsearch']['custom_config'].sort.each do |key, value| %>
 <%= key %>: <%= value %>
 <% end %>
