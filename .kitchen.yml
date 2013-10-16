@@ -18,6 +18,11 @@ suites:
   run_list:
     - recipe[hipsnip-elasticsearch_test::single_node]
     - recipe[minitest-handler]
+  attributes:
+    elasticsearch:
+      plugins:
+        karmi/elasticsearch-paramedic:
+          url: https://github.com/karmi/elasticsearch-paramedic/archive/master.zip
 - name: cluster-lwrp
   run_list:
     - recipe[hipsnip-elasticsearch_test::cluster_lwrp]

@@ -31,6 +31,10 @@ describe_recipe "hipsnip-elasticsearch_test::single_node_test" do
       must_include("rootLogger: INFO, console, file")
   end
 
+  it "should install the Paramedic plugin" do
+    file("/usr/local/elasticsearch/plugins/paramedic/_site/index.html").must_exist.with(:owner, 'elasticsearch')
+  end
+
   it "should start the Elasticsearch instance" do
     service("elasticsearch").must_be_running
   end
