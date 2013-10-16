@@ -87,7 +87,7 @@ action :create do
         raise "[!] Failed to set permission" unless system "chown -R #{node['elasticsearch']['user']}:#{node['elasticsearch']['group']} #{plugin_dir}"
       end
 
-      notifies :restart, 'service[#{instance_name}]'
+      notifies :restart, "service[#{instance_name}]"
 
       not_if do
         Dir.entries(plugin_dir).any? do |plugin|
