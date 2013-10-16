@@ -26,6 +26,8 @@ default['elasticsearch']['download']['checksum'] = 'f14ff217039b5c398a9256b68f46
 default['elasticsearch']['download']['host'] = 'download.elasticsearch.org'
 default['elasticsearch']['download']['subfolder'] = 'elasticsearch/elasticsearch'
 
+default['elasticsearch']['install_java'] = true
+
 
 ################################################################################
 # Generic configuration (will be the same for all instances on this node)

@@ -17,11 +17,13 @@
 # limitations under the License.
 #
 
+Erubis::Context.send(:include, Extensions::Templates)
+
 package 'curl'
-include_recipe "java" # @TODO - make this optional in the future
 include_recipe "ark::default"
 
-Erubis::Context.send(:include, Extensions::Templates)
+# Install JAVA if needed
+include_recipe "java" if node['elasticsearch']['install_java']
 
 # Set default logging attributes
 if node['elasticsearch']['logging']['syslog']
