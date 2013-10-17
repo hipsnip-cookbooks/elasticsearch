@@ -19,4 +19,6 @@
 
 include_recipe "hipsnip-elasticsearch::default"
 
-hipsnip_elasticsearch_instance "default"
+hipsnip_elasticsearch_instance "default" do
+  node_name node['elasticsearch']['node']['name']
+end

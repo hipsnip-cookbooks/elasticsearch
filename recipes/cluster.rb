@@ -59,3 +59,11 @@ node.set['elasticsearch']['discovery']['zen']['ping']['unicast']['hosts'] = clus
 
 # set minimum_master_nodes to n/2+1 to avoid split brain scenarios
 node.default['elasticsearch']['discovery']['zen']['minimum_master_nodes'] = (cluster_nodes.length / 2).floor + 1
+
+
+################################################################################
+# Create/update instance
+
+hipsnip_elasticsearch_instance "default" do
+  node_name node['elasticsearch']['node']['name']
+end

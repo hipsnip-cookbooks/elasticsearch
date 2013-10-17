@@ -50,6 +50,7 @@ default['elasticsearch']['transport']['tcp']['port'] = 9300
 default['elasticsearch']['plugins'] = {}
 
 # Cluster
+default['elasticsearch']['node']['name'] = 'Hip Hopper'
 default['elasticsearch']['cluster']['name'] = 'elasticsearch'
 default['elasticsearch']['discovery']['zen']['ping']['multicast']['enabled'] = true
 default['elasticsearch']['discovery']['zen']['minimum_master_nodes'] = 1
