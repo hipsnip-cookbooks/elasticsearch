@@ -20,11 +20,13 @@
 include_recipe "hipsnip-elasticsearch_test::default"
 
 hipsnip_elasticsearch_instance "one" do
-  port 9200
+  http_port 9200
+  tcp_port 9300
   node_name "one"
 end
 
 hipsnip_elasticsearch_instance "two" do
-  port 9201
+  http_port 9201
+  tcp_port 9301
   node_name "two"
 end

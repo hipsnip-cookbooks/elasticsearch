@@ -53,9 +53,10 @@ path.logs: <%= @log_dir %>
 <%= print_value 'network.publish_host' -%>
 <%= print_value 'network.host' -%>
 <%= print_value 'transport.tcp.port' -%>
+transport.tcp.port: <%= @tcp_port %>
 <%= print_value 'transport.tcp.compress' -%>
 <%= print_value 'http.host' -%>
-http.port: <%= @port %>
+http.port: <%= @http_port %>
 <%= print_value 'http.max_content_length' -%>
 <%= print_value 'http.enabled' -%>
 

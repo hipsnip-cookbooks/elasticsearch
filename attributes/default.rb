@@ -42,6 +42,10 @@ default['elasticsearch']['path']['data'] = '/var/lib/elasticsearch_data'
 default['elasticsearch']['path']['logs'] = '/var/log/elasticsearch'
 default['elasticsearch']['path']['install'] = '/usr/local'
 
+# Networking
+default['elasticsearch']['http']['port'] = 9200
+default['elasticsearch']['transport']['tcp']['port'] = 9300
+
 # Plugins
 default['elasticsearch']['plugins'] = {}
 

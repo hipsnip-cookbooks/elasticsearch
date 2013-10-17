@@ -54,7 +54,8 @@ action :create do
     cookbook 'hipsnip-elasticsearch'
     variables({
       'node_name' => new_resource.node_name,
-      'port' => new_resource.port,
+      'http_port' => new_resource.http_port,
+      'tcp_port' => new_resource.tcp_port,
       'config_dir' => config_dir,
       'data_dir' => data_dir,
       'log_dir' => log_dir
@@ -117,7 +118,7 @@ action :create do
   end
 
   hipsnip_elasticsearch_check_node "127.0.0.1" do
-    port new_resource.port
+    port new_resource.http_port
     expected_status node['elasticsearch']['node_check']['expected_status']
   end
 
