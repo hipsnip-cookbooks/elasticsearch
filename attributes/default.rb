@@ -99,3 +99,9 @@ default['elasticsearch']['node_check']['expected_status'] = 'yellow'
 default['elasticsearch']['node_check']['retries'] = 3
 default['elasticsearch']['node_check']['timeout'] = 10 # seconds
 # @note - timeout is exponential - the actual timeout is retry*timeout
+
+
+################################################################################
+# Cluster node discovery
+
+default['elasticsearch']['discovery']['node_attribute'] = 'fqdn'
